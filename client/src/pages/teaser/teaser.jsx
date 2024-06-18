@@ -11,7 +11,7 @@ import {
   FormErrorMessage,
 } from "@chakra-ui/react";
 import WildWestVideo from "./imgs/kidWithBat.mp4";
-import Logo from './imgs/logo1.png'
+import Logo from "./imgs/logo1.png";
 
 function TeaserPage() {
   const [isSignUpVisible, setIsSignUpVisible] = useState(false);
@@ -20,6 +20,10 @@ function TeaserPage() {
 
   const showSignUp = () => {
     setIsSignUpVisible(true);
+  };
+
+  const hideSignUp = () => {
+    setIsSignUpVisible(false);
   };
 
   const handleEmailChange = (e) => {
@@ -51,6 +55,7 @@ function TeaserPage() {
     >
       <video
         autoPlay
+        playsInline
         loop
         muted
         style={{
@@ -69,30 +74,35 @@ function TeaserPage() {
         justifyContent="center"
         alignItems="center"
         height="100vh"
-        backgroundImage="url('your-background-image.jpg')" // Add your background image here
         backgroundSize="cover"
       >
         <Box
           position="relative"
           zIndex="100"
-          width="55%"
+          width={["90%", "75%", "55%"]} 
           flexDirection="column"
           textAlign="center"
-          p="20px"
           borderWidth="1.6px"
           borderStyle="solid"
           borderColor="white"
-          height="60vh"
+          p='30px'
+          height={["auto", "auto", "80vh"]} // Responsive height
           display="flex"
           justifyContent="center"
           alignItems="center"
-          backdropFilter="blur(7px)" // Apply backdrop filter for blur effect
-          bg="rgba(0, 0, 0, .2)" // Semi-transparent background for better text readability
+          backdropFilter="blur(7px)"
+          bg="rgba(0, 0, 0, .2)"
         >
           {!isSignUpVisible ? (
             <>
-            <Image src={Logo} height='125px'/>
-              <Heading as="h2" size="xl" fontFamily="Montserrat" color="white">
+              <Image src={Logo} height={["75px", "100px", "125px"]} />
+              <Heading
+                as="h2"
+                size="xl"
+                fontFamily="Montserrat"
+                color="white"
+                fontSize={["lg", "xl", "2xl"]}
+              >
                 Welcome to
               </Heading>
               <Heading
@@ -101,13 +111,14 @@ function TeaserPage() {
                 fontFamily="BebasNeue"
                 mt="3"
                 color="white"
+                fontSize={["2xl", "3xl", "4xl"]}
               >
                 Chaos Collective
               </Heading>
               <Text
-                fontSize="xl"
+                fontSize={["sm", "md", "xl"]}
                 mt="4"
-                width="50%"
+                width={["80%", "70%", "50%"]}
                 color="#FFFFFF"
                 fontFamily="Lato"
               >
@@ -129,22 +140,46 @@ function TeaserPage() {
             </>
           ) : (
             <>
+              <Button
+                color="white"
+                bgColor="transparent"
+                onClick={hideSignUp}
+                position="absolute"
+                top="0"
+                left="0"
+                m={2}
+              >
+                X
+              </Button>
               <Heading
                 as="h2"
                 size="2xl"
                 fontFamily="BebasNeue"
                 color="white"
                 mb="4"
+                fontSize={["xl", "2xl", "3xl"]}
               >
                 Sign up for updates
               </Heading>
-              <Box width='60%'>
-                <Input marginTop='15px' color='white' placeholder="First Name"></Input>
-                <Input marginTop='15px' color='white' placeholder="Last Name"></Input>
-                <Input marginTop='15px' color='white' placeholder="Phone Number"></Input>
+              <Box width={["80%", "70%", "60%"]}>
+                <Input
+                  marginTop="15px"
+                  color="white"
+                  placeholder="First Name"
+                ></Input>
+                <Input
+                  marginTop="15px"
+                  color="white"
+                  placeholder="Last Name"
+                ></Input>
+                <Input
+                  marginTop="15px"
+                  color="white"
+                  placeholder="Phone Number"
+                ></Input>
                 <FormControl isInvalid={!isEmailValid}>
                   <Input
-                  marginTop='15px'
+                    marginTop="15px"
                     placeholder="Enter your email"
                     mb="4"
                     color="white"
